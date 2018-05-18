@@ -9,24 +9,21 @@ import { Client } from '../client';
 })
 export class ClientListComponent implements OnInit {
 
-  listClient:Client[];
+  listClient: Client[];
 
-  constructor(private clientService: ClientService ) { }
+  constructor(private clientService: ClientService) { }
 
   ngOnInit() {
-    this.clientService.loadClients().subscribe(data => this.listClient = data );
+    this.clientService.loadClients().subscribe(data => this.listClient = data);
   }
 
-  deleteQuiz(listClient: Client): boolean {
+  deleteClient(clientId: number) {
     // Delete the given quiz _AFTER_ user confirmation.
-    this.showConfirmationModal()
-      .subscribe({
-        complete: () => this.qs.deleteQuiz(client.id).subscribe(() => this.clientService.loadClients()),
-        error: () => {}
-      });
-
-    return false;  // No action on the <button>
-}
+    this.clientService.deleteClient(clientId).subscribe();
+    this.ngOnInit;
+    alert("Le client "+clientId+" a bien été supprimé!");
+    // No action on the <button>
+  }
 
 
 

@@ -1,3 +1,41 @@
-<p>
-  client-form works!
-</p>
+<form novalidate [formGroup]="clientForm" (ngSubmit)="createClient()">
+
+
+    <app-field label="Nom*" [control]="clientForm.get('nom')">
+      <input type="text" class="form-control" placeholder="nom" formControlName="nom">
+    </app-field>
+  
+    <!--div class="form-group" [class.has-error]="quizForm.get('title').invalid && quizForm.get('title').dirty" >
+      <label class="control-label">Titre*</label>
+      <input type="text" class="form-control" placeholder="Titre" formControlName="title">
+      <div class="help-block" *ngIf="quizForm.get('title').invalid && quizForm.get('title').dirty">
+        <p *ngIf="quizForm.get('title').hasError('required')">Ce champs est obligatoire</p>
+        <p *ngIf="quizForm.get('title').hasError('maxlength')">
+          Ce champs ne doit pas dépasser {{quizForm.get('title').getError('maxlength').requiredLength}} caractere
+        (actuellement: {{quizForm.get('title').getError('maxlength').actualLength}})
+        </p>
+        
+       </div>
+    </div-->
+    <app-field label="Prenom" [control]="clientForm.get('prenom')">
+        <textarea class="form-control" placeholder="Prenom" rows="3" formControlName="prenom"></textarea>
+      </app-field>
+  
+    <!-- <div class="form-group">
+      <label class="control-label">Description</label>
+      <textarea class="form-control" placeholder="Description" rows="3" formControlName="description"></textarea>
+    </div> -->
+  
+    <app-field label="Peut ré-essayer les questions" [control]="quizForm.get('CanRetryQuestion')">
+        <input type="checkbox" formControlName="CanRetryQuestion">
+      </app-field>
+  
+    <!-- <div class="form-group">
+      <label class="control-label">Peut ré-essayer les questions</label>
+      <input type="checkbox" formControlName="CanRetryQuestion">
+    </div> -->
+  
+    <button type="submit" class="btn btn-primary" [disabled]="quizForm.invalid">Enregistrer</button>
+    <a routerLink="..">Annuler</a>
+  
+  </form>
