@@ -1,3 +1,5 @@
+import { Conseiller } from "./Conseiller";
+
 export interface Client{
     id: number;
     nom: string;

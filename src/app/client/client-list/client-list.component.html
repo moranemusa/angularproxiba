@@ -1,3 +1,40 @@
+<h3>{{ listeClient}}</h3>
+
+<!-- new quiz -->
 <p>
-  client-list works!
+  <a routerLink="new" class="btn btn-default">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nouveau Quiz
+  </a>
 </p>
+
+<!-- quiz list -->
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Titre</th>
+    <th>Actions</th>
+    <th>Questions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let client of clients">
+    
+    <td>
+      <a [routerLink]="['/clients', clientId]" class="btn btn-default btn-sm" target="_blank">
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Voir
+      </a>
+      <a [routerLink]="[clientId]" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Éditer
+      </a>
+      <button class="btn btn-danger btn-sm" (click)="deleteClient(client)">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+      </button>
+    </td>
+    <td>
+      <a [routerLink]="[]" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Gérer les questions
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
