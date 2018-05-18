@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Client } from './client';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Client } from '_debugger';
+import { Client } from './client';
+
 
 @Injectable()
 export class ClientService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   loadClients(): Observable<Client[]> {
-    return this.http.get(`${this.baseUrl}/clients`)
-      // Re-hydrate
-      .map((quizArray: any[]) => quizArray.map(quizData => new Client(quizData)));
-}(){
-
+    return this.http.get<Client[]>('http://localhost:3004/clients');
   }
-  loadClient(){
 
+  loadClient(clientId: number): Observable<Client> {
+    return this.http.get<Client>('http://localhost:3004/clients/' + clientId);
   }
-  saveClient(){
 
+  saveClient(client: Client): Observable<Client> {
+    if (client.id) { // UPDATE
+      return this.http.put<Client>('http://localhost:3004/clients/' + client.id, client);
+    } else { // INSERT
+      return this.http.post<Client>('http://localhost:3004/clients', client);
+    }
   }
-  deleteClient(){
 
+  deleteClient(clientId: number): Observable<any> {
+    return this.http.delete('http://localhost:3004/clients/' + clientId);
   }
+
 }
+
+

@@ -3,7 +3,7 @@
 <!-- new quiz -->
 <p>
   <a routerLink="new" class="btn btn-default">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nouveau Quiz
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nouveau client
   </a>
 </p>
 
@@ -11,19 +11,21 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Titre</th>
+    <th>Clients</th>
     <th>Actions</th>
-    <th>Questions</th>
+    <th>Comptes</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let client of clients">
+  <tr *ngFor="let client of listClient">
+      <td>{{ client.nom }} {{client.prenom}}</td>
+      
     
     <td>
-      <a [routerLink]="['/clients', clientId]" class="btn btn-default btn-sm" target="_blank">
+      <a [routerLink]="['/clients', client.id]" class="btn btn-default btn-sm" target="_blank">
         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Voir
       </a>
-      <a [routerLink]="[clientId]" class="btn btn-default btn-sm">
+      <a [routerLink]="[client.id]" class="btn btn-default btn-sm">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Éditer
       </a>
       <button class="btn btn-danger btn-sm" (click)="deleteClient(client)">
@@ -32,7 +34,7 @@
     </td>
     <td>
       <a [routerLink]="[]" class="btn btn-default btn-sm">
-        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Gérer les questions
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Gérer les comptes
       </a>
     </td>
   </tr>
